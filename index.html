@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="navigation">
+            <div id="roomInfo">
+                <form id="roomForm">
+                    <input type="number" id="roomInput">
+                    <button type="submit" id="joinRoom">Join</button>
+                </form>
+            </div>
+            <div id="inRoomInfo">
+                <p>Room: <label id="roomDisplay">[NO ROOM]</label></p>
+                <button id="leaveRoom">Leave</button>
+            </div>
+        </div>
+        <div id="chat">
+            <div id="messages">
+
+            </div>
+            <div id="inputArea">
+                <form id="inputForm">
+                    <button id="emojiInput">Insert</button>
+                    <input type="text" id="chatInput">
+                    <button type="submit" id="send">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="src/script.js"></script>
+</body>
+
+</html>
