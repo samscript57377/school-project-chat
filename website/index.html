@@ -9,15 +9,18 @@
 <body>
     <div id="container">
         <div id="navigation">
-            <div id="roomInfo">
-                <form id="roomForm">
-                    <input type="number" id="roomInput">
-                    <button type="submit" id="joinRoom">Join</button>
-                </form>
-            </div>
-            <div id="inRoomInfo">
-                <p>Room: <label id="roomDisplay">[NO ROOM]</label></p>
-                <button id="leaveRoom">Leave</button>
+            <div id="navContainer">
+                <h1>Chat</h1>
+                <div class="navItem" id="roomInfo">
+                    <form id="roomForm">
+                        <input type="number" id="roomInput" placeholder="Enter roomcode">
+                        <button type="submit" id="joinRoom">Join</button>
+                    </form>
+                </div>
+                <div class="navItem" id="inRoomInfo">
+                    <p>Room: <label id="roomDisplay">[NO ROOM]</label></p>
+                    <button id="leaveRoom">Leave</button>
+                </div>
             </div>
         </div>
         <div id="chat">
