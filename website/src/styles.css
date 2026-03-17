@@ -3,6 +3,7 @@
 * {
     margin: 0%;
     padding: 0%;
+    transition: 0.2s ease-in;
 }
 
 body {
@@ -52,6 +53,8 @@ body {
 
 .navItem {
     z-index: 5;
+    display: flex;
+    align-items: center;
 }
 
 #roomInput {
@@ -63,11 +66,33 @@ body {
     padding: 5px;
 }
 
-#joinRoom {
+#joinRoom,
+#leaveRoom {
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-variation-settings:
+        "GRAD" 0;
     height: 35px;
-    width: 75px;
+    width: 65px;
     border-radius: 10px;
     padding: 5px;
     border: 1px solid #bbbbbb;
     outline: none;
+}
+
+#joinRoom:hover,
+#leaveRoom:hover {
+    transform: scale(0.9);
+    background-color: #dddddd;
+}
+
+pre {
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "GRAD" 0;
+    font-size: larger;
 }
