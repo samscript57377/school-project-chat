@@ -13,7 +13,7 @@
                 <h1>Chat</h1>
                 <div class="navItem" id="roomInfo">
                     <form id="roomForm">
-                        <input type="number" id="roomInput" placeholder="Enter roomcode">
+                        <input type="number" min="000" id="roomInput" placeholder="Enter roomcode">
                         <button type="submit" id="joinRoom">Join</button>
                     </form>
                 </div>
@@ -21,10 +21,32 @@
                     <pre>Room: <label id="roomDisplay">[NO ROOM]</label>  </pre>
                     <button id="leaveRoom">Leave</button>
                 </div>
+                <div class="navItem" id="settingsArea">
+                    <button id="settingsBtn">
+                        Settings
+                    </button>
+                </div>
             </div>
         </div>
         <div id="chat">
             <div id="messages">
+                <div class="msgContainer">
+                    <div class="message msgLeft">
+                        <h3>ThatOneGuy</h3>
+                        <p>Hello guys</p>
+                    </div>
+                </div>
+                <div class="msgContainer">
+                    <div class="server-message">
+                        <h3><label>&RightArrow; </label>Someone joined the room!</h3>
+                    </div>
+                </div>
+                <div class="msgContainer">
+                    <div class="message msgRight">
+                        <h3>Someone</h3>
+                        <p>Ayo<br>I really like how i made this chat website with HTML, CSS and JavaScript!</p>
+                    </div>
+                </div>
 
             </div>
             <div id="inputArea">
@@ -36,7 +58,25 @@
             </div>
         </div>
     </div>
-    <script src="src/script.js"></script>
+    <div id="popupBackground">
+        <div class="popup" id="settingsPopup">
+            <h1>Settings</h1>
+            <button class="btn" id="openNamePopup">Change username</button><br>
+            <button class="btn" id="openColorPopup">Change username color</button><br>
+            <button class="btn" id="coseSettings">Close</button>
+        </div>
+        <div class="popup" id="changeNamePopup">
+            <h1>Enter a username to continue</h1>
+            <input type="text" id="usernameInput"><br>
+            <button class="btn" id="nameConfirmBtn">Confirm</button>
+        </div>
+        <div class="popup" id="changeColorPopup">
+            <h1>Change your color</h1>
+            <input type="color" id="colorInput"><br>
+            <button class="btn" id="colorConfirm">Confirm</button>
+        </div>
+    </div>
+    <script src="src/script.js" defer></script>
 </body>
 
 </html>
