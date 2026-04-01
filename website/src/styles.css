@@ -109,13 +109,11 @@ pre {
 }
 
 #messages {
-    background-color: aquamarine;
     height: calc(100% - 125px);
     overflow-y: scroll;
 }
 
 #inputArea {
-    background-color: aqua;
     height: 100px;
     display: flex;
     align-items: center;
@@ -168,4 +166,27 @@ pre {
 #chatInput:hover {
     transform: scale(0.975);
     background-color: #eeeeee;
+}
+
+.message {
+    position: static;
+    background-color: #eeeeee;
+    margin: 10px;
+    padding: 5px;
+    border-left: solid 5px #fd2383;
+    width: clamp(500px, 30%, 800px);
+    border-radius: 7.5px;
+    font-family: "Google Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "GRAD" 0;
+}
+
+.msgLeft {
+    left: 5px;
+}
+
+.msgRight {
+    right: 5px;
 }
