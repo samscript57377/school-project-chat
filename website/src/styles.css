@@ -226,15 +226,22 @@ pre {
 #popupBackground {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+  /*  position: absolute;*/
     z-index: 3;
     background-color: rgba(80, 80, 80, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 30%;
     padding: 20px;
-    width: calc(30vw - 40px);
-    height: calc(40vh - 40px);
     background-color: #dddddd;
     border: 1px solid #cccccc;
     border-radius: 25px;

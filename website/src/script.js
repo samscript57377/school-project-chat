@@ -4,13 +4,45 @@ const chatInput = document.getElementById('chatInput');
 const settingsPopup = document.getElementById('settingsPopup');
 const namePopup = document.getElementById('changeNamePopup');
 const colorPopup = document.getElementById('changeColorPopup');
+const popupBG = document.getElementById('popupBackground');
+const userNameInput = document.getElementById('usernameInput');
+const colorInput = document.getElementById('colorInput');
 
 let isSettingsPopupOpen = false;
 let isUsernamePopupOpen = false;
 let isUsernameColorPopupOpen = false;
 
-let userName = localStorage.getItem("userName") ?? prompt("Please enter your username...");
+function getRandomInt(max) {
+    return Math.floor(Math.random() * (max + 1));
+}
 
+function getRandomRGB() {
+    const r = getRandomInt(255);
+    const g = getRandomInt(255);
+    const b = getRandomInt(255);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function generateName() {
+    return "Guest" + Math.random().toFixed(3) * 1000;
+}
+
+let userName = localStorage.getItem("userName") ?? generateName();
+let userColor = localStorage.getItem("userColor") ?? getRandomRGB();
+
+function setUserColor(color) {
+    userColor = color;
+    localStorage.setItem('userColor', userColor)
+}
+
+function setUserName(name) {
+    userName = name;
+    if (userName.toLowerCase().includes("admin")) {
+        userName = generateName();
+    }
+    userName = userName.trim().split(" ").join("_");
+    localStorage.setItem('userName', userName);
+}
 //verwijdert html karakters en zet karakters die erop lijken voor in de plaats
 function escapeHTML(str) {
     const string = String(str).replace(/[&<>"']/g, function (match) {
@@ -64,14 +96,14 @@ function sendMessage() {
     const input = escapeHTML(chatInput.value ?? "");
     if (input == "") return;
     const text = input.replace("\n", "<br>")
-    let message = new Message('text', { name: userName, color: "red", text: text });
+    let message = new Message('text', { name: userName, color: userColor, text: text });
     chatInput.value = "";
-    return message
+    return message;
 }
 
 inputForm.addEventListener('submit', (event) => {
-    event.preventDefault()
-    sendMessage()
+    event.preventDefault();
+    sendMessage();
 })
 
 chatInput.addEventListener("keydown", e => {
@@ -90,13 +122,17 @@ chatInput.addEventListener("keydown", e => {
     }
 });
 
-function doPopupBG () {
-
+function doPopupBG() {
+    if (isSettingsPopupOpen || isUsernameColorPopupOpen || isUsernamePopupOpen) {
+        popupBG.style.display = "block";
+    } else {
+        popupBG.style.display = "none";
+    }
 }
 
 function toggleSettings() {
     isSettingsPopupOpen = !isSettingsPopupOpen;
-    console.info("Setting visibility of the settings popup to ",isSettingsPopupOpen);
+    console.info("Setting visibility of the settings popup to ", isSettingsPopupOpen);
     if (isSettingsPopupOpen) {
         if (isUsernameColorPopupOpen) toggleColorPopup();
         if (isUsernamePopupOpen) toggleNamePopup();
@@ -118,7 +154,7 @@ function toggleNamePopup() {
 
 function toggleColorPopup() {
     isUsernameColorPopupOpen = !isUsernameColorPopupOpen;
-    console.info("Setting visibility of the color popup to ",isUsernameColorPopupOpen);
+    console.info("Setting visibility of the color popup to ", isUsernameColorPopupOpen);
     if (isUsernameColorPopupOpen) {
         if (isSettingsPopupOpen) toggleSettings();
         if (isUsernamePopupOpen) toggleNamePopup();
@@ -127,4 +163,25 @@ function toggleColorPopup() {
     doPopupBG();
 }
 
-document.getElementById('settingsBtn').addEventListener('click', toggleSettings())
+function confirmNewUsername() {
+    const newName = userNameInput.value;
+    console.info('Changing username to ',newName);
+    setUserName(newName);
+    toggleNamePopup();
+}
+
+function confirmNewColor() {
+    const newColor = colorInput.value;
+    console.info('Changing color to ', newColor);
+    setUserColor(newColor);
+    toggleColorPopup();
+}
+
+document.getElementById('settingsBtn').addEventListener('click', toggleSettings);
+document.getElementById('closeSettings').addEventListener('click', toggleSettings);
+
+document.getElementById('openNamePopup').addEventListener('click', toggleNamePopup);
+document.getElementById('nameConfirmBtn').addEventListener('click', confirmNewUsername);
+
+document.getElementById('openColorPopup').addEventListener('click', toggleColorPopup);
+document.getElementById('colorConfirm').addEventListener('click', confirmNewColor);
