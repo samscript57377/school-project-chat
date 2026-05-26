@@ -11,6 +11,7 @@
         <div id="navigation">
             <div id="navContainer">
                 <h1>Chat</h1>
+                <div id="divider"></div>
                 <div class="navItem" id="roomInfo">
                     <form id="roomForm">
                         <input type="number" min="000" id="roomInput" placeholder="Enter roomcode">
@@ -29,7 +30,25 @@
             </div>
         </div>
         <div id="chat">
+            <div id="welcomeScreen">
+                <div id="welcomeContent">
+                    <h1>Welcome to Chat</h1>
+                    <p>Join a room to start chatting with others</p>
+                    <div id="welcomeInfo">
+                        <h3>How to get started:</h3>
+                        <ol>
+                            <li>Enter a room code in the navigation bar</li>
+                            <li>Click the "Join" button</li>
+                            <li>Start chatting!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
             <div id="messages">
+                <!--
+                
+                Voorbeeld hoe de chat eruit kan zien:
+                
                 <div class="msgContainer">
                     <div class="message msgLeft">
                         <h3>ThatOneGuy</h3>
@@ -47,11 +66,11 @@
                         <p>Ayo<br>I really like how i made this chat website with HTML, CSS and JavaScript!</p>
                     </div>
                 </div>
+                -->
 
             </div>
             <div id="inputArea">
                 <form id="inputForm">
-                    <button id="emojiInput">Insert</button>
                     <input type="text" id="chatInput">
                     <button type="submit" id="send">Send</button>
                 </form>

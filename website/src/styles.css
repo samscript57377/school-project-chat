@@ -3,7 +3,7 @@
 * {
     margin: 0%;
     padding: 0%;
-    transition: 0.2s ease-in;
+    transition: all 0.2s ease-in;
     font-family: "Google Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -89,9 +89,20 @@ body {
     outline: none;
 }
 
+#openNamePopup {
+    margin-top: 10px;
+    width: 150px;
+}
+
+#openColorPopup {
+    margin: 10px 0;
+    width: 175px;
+}
+
 #joinRoom:hover,
 #leaveRoom:hover,
-#settingsBtn:hover {
+#settingsBtn:hover,
+.btn:hover {
     transform: scale(0.9);
     background-color: #dddddd;
 }
@@ -106,6 +117,63 @@ pre {
     width: calc(100% - 50px);
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+#welcomeScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 25px 25px;
+    z-index: 10;
+}
+
+#welcomeScreen.hidden {
+    display: none;
+}
+
+#welcomeContent {
+    text-align: center;
+    max-width: 600px;
+}
+
+#welcomeContent h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+#welcomeContent > p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #666666;
+}
+
+#welcomeInfo {
+    background-color: #eeeeee;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+    display: inline-block;
+}
+
+#welcomeInfo h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333333;
+}
+
+#welcomeInfo ol {
+    font-size: 18px;
+    margin-left: 20px;
+    color: #555555;
+    line-height: 1.8;
 }
 
 #messages {
@@ -115,6 +183,12 @@ pre {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+#divider {
+    border: solid 2px #000000;
+    padding: 17.5px 0;
+    border-radius: 500px;
 }
 
 #inputArea {
@@ -150,14 +224,12 @@ pre {
     align-self: baseline;
 }
 
-#emojiInput,
 #send {
     font-size: 27.5px;
     font-weight: bold;
 }
 
 #chatInput,
-#emojiInput,
 #send {
     height: 50px;
     border-radius: 17.5px;
@@ -165,7 +237,6 @@ pre {
     outline: none;
 }
 
-#emojiInput:hover,
 #send:hover {
     transform: scale(0.95);
     background-color: #dddddd;
@@ -226,25 +297,32 @@ pre {
 #popupBackground {
     width: 100vw;
     height: 100vh;
-  /*  position: absolute;*/
+    position: fixed;
+    left: 0px;
+    top: 0px;
     z-index: 3;
     background-color: rgba(80, 80, 80, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    backdrop-filter: blur(5px); 
 }
 
 .popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed;
+    left: 37.5%;
+    top: 35%;
     width: 25%;
     height: 30%;
     padding: 20px;
     background-color: #dddddd;
     border: 1px solid #cccccc;
     border-radius: 25px;
+    display: flex;
+    text-align: center;
+    animation-name: popup;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
 }
 
 #changeColorPopup,
@@ -252,6 +330,50 @@ pre {
 #changeNamePopup,
 #popupBackground {
     display: none;
+}
+
+#usernameInput {
+    margin: 20px 0;
+    border: 2px solid #ccc;
+    height: 35px;
+    width: 250px;
+    border-radius: 15px;
+    padding-left: 5px;
+}
+
+#usernameInput:hover,
+#colorInput:hover {
+    transform: scale(0.9);
+}
+
+#usernameInput:focus,
+#colorInput:focus {
+    outline: none;
+    transform: scale(1.1);
+}
+
+#colorInput {
+    margin: 20px 0;
+    height: 100px;
+    width: 100px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+}
+
+#inRoomInfo {
+    display: none;
+}
+
+@keyframes popup {
+    from {
+        transform: translateY(20px) scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes spawnMessage {
