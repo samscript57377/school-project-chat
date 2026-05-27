@@ -187,7 +187,7 @@ function sendMessage() {
     if (input == "") return;
     const text = input.replace(/\n/g, "<br>")
     
-    // Send message to server
+    // Stuur een bericht naar de server
     if (socket.readyState === WebSocket.OPEN) {
         socket.send(JSON.stringify({
             type: 'message',
@@ -309,7 +309,7 @@ function cleanup() {
     }
 }
 
-// Send leave message and cleanup on page unload
+// stuur een bericht als iemand leaved en opschonen
 window.addEventListener('beforeunload', cleanup);
 window.addEventListener('unload', cleanup);
 
